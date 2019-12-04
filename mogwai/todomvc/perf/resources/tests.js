@@ -119,7 +119,7 @@ Suites.push({
 
 
 Suites.push({
-    name: 'yew',
+    name: 'yew 0.10',
     url: 'todomvc/yew-0.10/index.html',
     version: '0.10.0',
     prepare: function (runner, contentWindow, contentDocument) {
