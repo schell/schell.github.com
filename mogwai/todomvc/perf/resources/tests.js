@@ -1,6 +1,16 @@
 var numberOfItemsToAdd = 100;
 var Suites = [];
 
+function onchangeInputStep (newTodo, contentWindow, contentDocument) {
+    var appView = contentWindow.appView;
+    for (var i = 0; i < numberOfItemsToAdd; i++) {
+        var changeEvent = document.createEvent('Event');
+        changeEvent.initEvent('change', true, true);
+        newTodo.value = 'Something to do ' + i;
+        newTodo.dispatchEvent(changeEvent);
+    }
+}
+
 Suites.push({
     name: 'Mogwai',
     url: 'todomvc/mogwai/index.html',
@@ -12,20 +22,7 @@ Suites.push({
         });
     },
     tests: [
-        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (newTodo, contentWindow, contentDocument) {
-            var appView = contentWindow.appView;
-            for (var i = 0; i < numberOfItemsToAdd; i++) {
-                var inputEvent = document.createEvent('Event');
-                inputEvent.initEvent('input', true, true);
-                newTodo.value = 'Something to do ' + i;
-                newTodo.dispatchEvent(inputEvent);
-
-                var keypressEvent = document.createEvent('Event');
-                keypressEvent.initEvent('keypress', true, true);
-                keypressEvent.which = 13; // VK_ENTER
-                newTodo.dispatchEvent(keypressEvent);
-            }
-        }),
+        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', onchangeInputStep),
         new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {
             var checkboxes = contentDocument.querySelectorAll('.toggle');
             for (var i = 0; i < checkboxes.length; i++)
@@ -51,20 +48,7 @@ Suites.push({
         });
     },
     tests: [
-        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (newTodo, contentWindow, contentDocument) {
-            var appView = contentWindow.appView;
-            for (var i = 0; i < numberOfItemsToAdd; i++) {
-                var inputEvent = document.createEvent('Event');
-                inputEvent.initEvent('input', true, true);
-                newTodo.value = 'Something to do ' + i;
-                newTodo.dispatchEvent(inputEvent);
-
-                var keypressEvent = document.createEvent('Event');
-                keypressEvent.initEvent('keypress', true, true);
-                keypressEvent.which = 13; // VK_ENTER
-                newTodo.dispatchEvent(keypressEvent);
-            }
-        }),
+        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', onchangeInputStep),
         new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {
             var checkboxes = contentDocument.querySelectorAll('.toggle');
             for (var i = 0; i < checkboxes.length; i++)
@@ -90,20 +74,7 @@ Suites.push({
         });
     },
     tests: [
-        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', function (newTodo, contentWindow, contentDocument) {
-            var appView = contentWindow.appView;
-            for (var i = 0; i < numberOfItemsToAdd; i++) {
-                var inputEvent = document.createEvent('Event');
-                inputEvent.initEvent('input', true, true);
-                newTodo.value = 'Something to do ' + i;
-                newTodo.dispatchEvent(inputEvent);
-
-                var keypressEvent = document.createEvent('Event');
-                keypressEvent.initEvent('keypress', true, true);
-                keypressEvent.which = 13; // VK_ENTER
-                newTodo.dispatchEvent(keypressEvent);
-            }
-        }),
+        new BenchmarkTestStep('Adding' + numberOfItemsToAdd + 'Items', onchangeInputStep),
         new BenchmarkTestStep('CompletingAllItems', function (newTodo, contentWindow, contentDocument) {
             var checkboxes = contentDocument.querySelectorAll('.toggle');
             for (var i = 0; i < checkboxes.length; i++)
